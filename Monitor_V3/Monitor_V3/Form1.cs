@@ -16,5 +16,10 @@ namespace Monitor_V3
         {
             InitializeComponent();
         }
+
+        private void logBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

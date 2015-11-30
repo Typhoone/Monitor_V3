@@ -38,6 +38,11 @@
             this.COMconnect = new System.Windows.Forms.Button();
             this.fileOpenBtn = new System.Windows.Forms.Button();
             this.fileSaveBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.infoLabel = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.pulseTimeBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // logBox
@@ -45,8 +50,9 @@
             this.logBox.FormattingEnabled = true;
             this.logBox.Location = new System.Drawing.Point(12, 49);
             this.logBox.Name = "logBox";
-            this.logBox.Size = new System.Drawing.Size(530, 550);
+            this.logBox.Size = new System.Drawing.Size(530, 524);
             this.logBox.TabIndex = 0;
+            this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -54,12 +60,12 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(423, 140);
+            this.textBox1.Size = new System.Drawing.Size(423, 143);
             this.textBox1.TabIndex = 1;
             // 
             // noteBtn
             // 
-            this.noteBtn.Location = new System.Drawing.Point(815, 576);
+            this.noteBtn.Location = new System.Drawing.Point(816, 579);
             this.noteBtn.Name = "noteBtn";
             this.noteBtn.Size = new System.Drawing.Size(75, 23);
             this.noteBtn.TabIndex = 2;
@@ -78,7 +84,7 @@
             // 
             // clrNoteBtn
             // 
-            this.clrNoteBtn.Location = new System.Drawing.Point(896, 576);
+            this.clrNoteBtn.Location = new System.Drawing.Point(897, 579);
             this.clrNoteBtn.Name = "clrNoteBtn";
             this.clrNoteBtn.Size = new System.Drawing.Size(75, 23);
             this.clrNoteBtn.TabIndex = 4;
@@ -130,12 +136,65 @@
             this.fileSaveBtn.Text = "Save";
             this.fileSaveBtn.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "label2";
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Location = new System.Drawing.Point(12, 584);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(154, 13);
+            this.infoLabel.TabIndex = 11;
+            this.infoLabel.Text = "Monitor v3.0 By Gordon Adams";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(548, 78);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown1.TabIndex = 13;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // pulseTimeBtn
+            // 
+            this.pulseTimeBtn.Location = new System.Drawing.Point(620, 75);
+            this.pulseTimeBtn.Name = "pulseTimeBtn";
+            this.pulseTimeBtn.Size = new System.Drawing.Size(100, 23);
+            this.pulseTimeBtn.TabIndex = 14;
+            this.pulseTimeBtn.Text = "Set Pulse Time";
+            this.pulseTimeBtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 611);
+            this.Controls.Add(this.pulseTimeBtn);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.infoLabel);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.fileSaveBtn);
             this.Controls.Add(this.fileOpenBtn);
             this.Controls.Add(this.COMconnect);
@@ -148,6 +207,7 @@
             this.Controls.Add(this.logBox);
             this.Name = "Form1";
             this.Text = "Monitor v3.0";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,6 +225,10 @@
         private System.Windows.Forms.Button COMconnect;
         private System.Windows.Forms.Button fileOpenBtn;
         private System.Windows.Forms.Button fileSaveBtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label infoLabel;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button pulseTimeBtn;
     }
 }
 
