@@ -11,12 +11,18 @@ namespace Monitor_V3
 {
     class SerialControl
     {
-        public delegate void delLogUpdate(Log log);
+        
 
         //GUI Elements
         Thread serialThread;
+
+        Form1 form;
+
         ListBox logBox;
+        public delegate void delLogUpdate(string data_rx);
+
         Label infoLabel;
+        public delegate void delInfoUpdate(string info);
 
         //Control Variables
         public int PULSETIME; // seconds for one pulse/log to arrive
@@ -27,15 +33,20 @@ namespace Monitor_V3
         bool connected = false;
 
 
-        public SerialControl(ListBox logs, Label infoLabel)
+        public SerialControl(ListBox logs, Label infoLabel, Form1 form)
         {
+
+            this.form = form;
             this.logBox = logs;
             this.infoLabel = infoLabel;
 
 
             setPulseTime(30);
-           
+
+            
+
         }
+
 
         /// <summary>
         /// Sets the Expected time for one pulse of data
@@ -48,10 +59,20 @@ namespace Monitor_V3
             this.timeout = PULSETIME * 4;
         }
 
+        public void firstConnect()
+        {
+            string[] allports = SerialPort.GetPortNames();
+
+            if(allports.Length == 1)
+            {
+                connectPort(allports[0]);
+            }
+        }
+
         public void connectPort(string portName)
         {
             
-            if(myPort != null || connected)
+            if(myPort != null && connected)
             {
                 connected = false;
                 myPort.Close();
@@ -63,16 +84,47 @@ namespace Monitor_V3
             myPort.PortName = portName;
             myPort.ReadTimeout = timeout * 1000;
 
+            try {
+                myPort.Open();
+            }catch (Exception e)
+            {
+                delUpdateInfo("Connect fail: " + e.Message);
+                return;
+            }
+            delUpdateInfo("Connected on Port: " + portName);
             connected = true;
+
+            serialThread = new Thread(new ThreadStart(interpret));
+            serialThread.Name = "SerialThread";
+            serialThread.IsBackground = true;
+            serialThread.Start();
         }
 
-        /// <summary>
-        /// Prints to the Info message dialogue at the bottom
-        /// </summary>
-        /// <param name="info"></param>
-        public void updateInfo(string info)
+        public void delUpdateInfo(string info)
         {
+            delInfoUpdate updator = new delInfoUpdate(form.updateInfo);
+            
+            infoLabel.BeginInvoke(updator, info);
+        }
 
+        public void interpret()
+        {
+            string data_rx = "";// data from COM
+            while (connected)
+            {
+                try {
+                    data_rx = myPort.ReadLine();
+
+                    delLogUpdate updator = new delLogUpdate(form.addLog);
+
+                    this.logBox.BeginInvoke(updator, data_rx);
+
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
         }
     }
 }

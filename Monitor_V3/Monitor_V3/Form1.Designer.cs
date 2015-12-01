@@ -90,6 +90,7 @@
             this.clrNoteBtn.TabIndex = 4;
             this.clrNoteBtn.Text = "Cancel";
             this.clrNoteBtn.UseVisualStyleBackColor = true;
+            this.clrNoteBtn.Click += new System.EventHandler(this.clrNoteBtn_Click);
             // 
             // portSelect
             // 
@@ -108,6 +109,7 @@
             this.COMportRefresh.TabIndex = 6;
             this.COMportRefresh.Text = "Refresh";
             this.COMportRefresh.UseVisualStyleBackColor = true;
+            this.COMportRefresh.Click += new System.EventHandler(this.COMportRefresh_Click);
             // 
             // COMconnect
             // 
@@ -117,6 +119,7 @@
             this.COMconnect.TabIndex = 7;
             this.COMconnect.Text = "Connect";
             this.COMconnect.UseVisualStyleBackColor = true;
+            this.COMconnect.Click += new System.EventHandler(this.COMconnect_Click);
             // 
             // fileOpenBtn
             // 
