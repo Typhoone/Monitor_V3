@@ -46,6 +46,16 @@ namespace Monitor_V3
 
         }
 
+        public void setNote(string note)
+        {
+            this.note = note;
+        }
+
+        public string getNote()
+        {
+            return this.note;
+        }
+
         public string print()
         {
             return (time + "\t" + RPM + "\t" + duty + "\t" + delay + "\t" + coilTemp + "\t" + controlTemp + "\t" + electronicStartRPM + "\t" + String.Format("{0:0.##}", frequency) + "\tm" + magnets);

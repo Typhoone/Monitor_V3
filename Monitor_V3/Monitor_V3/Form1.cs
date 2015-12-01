@@ -15,6 +15,8 @@ namespace Monitor_V3
     {
         List<Log> dataList = new List<Log>();
         SerialControl serialControl;
+
+        bool autoScroll = true;
         public Form1()
         {
             InitializeComponent();
@@ -37,23 +39,39 @@ namespace Monitor_V3
         {
             dataList.Add(new Log(DateTime.Now.ToString("HH:mm:ss"), data_rx));
             this.logBox.Items.Add(dataList[dataList.Count - 1].print());
-            Console.WriteLine("added");
+            if (autoScroll)
+            {
+                this.logBox.SelectedIndex = this.logBox.Items.Count - 1;
+            }
         }
 
         private void logBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(dataList != null && dataList.Count > 0 && logBox.SelectedIndex >= 0)
+            {
+                Log log = dataList[logBox.SelectedIndex];
+                this.noteTextBox.Text = log.getNote();
+            }
+            
         }
 
         private void clrNoteBtn_Click(object sender, EventArgs e)
         {
-            
+            if (dataList != null && dataList.Count > 0 && logBox.SelectedIndex >= 0)
+            {
+                Log log = dataList[logBox.SelectedIndex];
+                this.noteTextBox.Text = log.getNote();
+            }
+               
         }
 
         private void COMconnect_Click(object sender, EventArgs e)
         {
-            serialControl.connectPort((string)portSelect.Items[portSelect.SelectedIndex]);
-            //Console.WriteLine();
+            if(portSelect.SelectedIndex >= 0)
+            {
+                serialControl.connectPort((string)portSelect.Items[portSelect.SelectedIndex]);
+
+            }
         }
 
         private void COMportRefresh_Click(object sender, EventArgs e)
@@ -72,6 +90,23 @@ namespace Monitor_V3
             {
                 portSelect.SelectedIndex = 0;
             }
+        }
+
+        private void noteBtn_Click(object sender, EventArgs e)
+        {
+            Log log = dataList[this.logBox.SelectedIndex];
+            log.setNote(this.noteTextBox.Text);
+            autoScroll = true;
+        }
+
+        private void noteTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            autoScroll = false;
+        }
+
+        private void autoScrollCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            autoScroll = this.autoScrollCheck.Checked;
         }
     }
 }

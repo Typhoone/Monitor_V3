@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.logBox = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.noteTextBox = new System.Windows.Forms.TextBox();
             this.noteBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.clrNoteBtn = new System.Windows.Forms.Button();
@@ -38,15 +38,16 @@
             this.COMconnect = new System.Windows.Forms.Button();
             this.fileOpenBtn = new System.Windows.Forms.Button();
             this.fileSaveBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.pulseTimeBtn = new System.Windows.Forms.Button();
+            this.autoScrollCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // logBox
             // 
+            this.logBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logBox.FormattingEnabled = true;
             this.logBox.Location = new System.Drawing.Point(12, 49);
             this.logBox.Name = "logBox";
@@ -54,14 +55,15 @@
             this.logBox.TabIndex = 0;
             this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
             // 
-            // textBox1
+            // noteTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(548, 430);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(423, 143);
-            this.textBox1.TabIndex = 1;
+            this.noteTextBox.Location = new System.Drawing.Point(548, 430);
+            this.noteTextBox.Multiline = true;
+            this.noteTextBox.Name = "noteTextBox";
+            this.noteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.noteTextBox.Size = new System.Drawing.Size(423, 143);
+            this.noteTextBox.TabIndex = 1;
+            this.noteTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.noteTextBox_MouseClick);
             // 
             // noteBtn
             // 
@@ -71,6 +73,7 @@
             this.noteBtn.TabIndex = 2;
             this.noteBtn.Text = "Add Note";
             this.noteBtn.UseVisualStyleBackColor = true;
+            this.noteBtn.Click += new System.EventHandler(this.noteBtn_Click);
             // 
             // label1
             // 
@@ -139,15 +142,6 @@
             this.fileSaveBtn.Text = "Save";
             this.fileSaveBtn.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "label2";
-            // 
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
@@ -188,16 +182,30 @@
             this.pulseTimeBtn.Text = "Set Pulse Time";
             this.pulseTimeBtn.UseVisualStyleBackColor = true;
             // 
+            // autoScrollCheck
+            // 
+            this.autoScrollCheck.AutoSize = true;
+            this.autoScrollCheck.Checked = true;
+            this.autoScrollCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoScrollCheck.Location = new System.Drawing.Point(455, 580);
+            this.autoScrollCheck.Name = "autoScrollCheck";
+            this.autoScrollCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.autoScrollCheck.Size = new System.Drawing.Size(77, 17);
+            this.autoScrollCheck.TabIndex = 15;
+            this.autoScrollCheck.Text = "Auto Scroll";
+            this.autoScrollCheck.UseVisualStyleBackColor = true;
+            this.autoScrollCheck.CheckedChanged += new System.EventHandler(this.autoScrollCheck_CheckedChanged);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 611);
+            this.Controls.Add(this.autoScrollCheck);
             this.Controls.Add(this.pulseTimeBtn);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.infoLabel);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.fileSaveBtn);
             this.Controls.Add(this.fileOpenBtn);
             this.Controls.Add(this.COMconnect);
@@ -206,7 +214,7 @@
             this.Controls.Add(this.clrNoteBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.noteBtn);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.noteTextBox);
             this.Controls.Add(this.logBox);
             this.Name = "Form1";
             this.Text = "Monitor v3.0";
@@ -219,7 +227,7 @@
         #endregion
 
         private System.Windows.Forms.ListBox logBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox noteTextBox;
         private System.Windows.Forms.Button noteBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button clrNoteBtn;
@@ -228,10 +236,10 @@
         private System.Windows.Forms.Button COMconnect;
         private System.Windows.Forms.Button fileOpenBtn;
         private System.Windows.Forms.Button fileSaveBtn;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button pulseTimeBtn;
+        private System.Windows.Forms.CheckBox autoScrollCheck;
     }
 }
 
