@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.logBox = new System.Windows.Forms.ListBox();
             this.noteTextBox = new System.Windows.Forms.TextBox();
             this.noteBtn = new System.Windows.Forms.Button();
@@ -42,7 +45,11 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.pulseTimeBtn = new System.Windows.Forms.Button();
             this.autoScrollCheck = new System.Windows.Forms.CheckBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // logBox
@@ -51,13 +58,13 @@
             this.logBox.FormattingEnabled = true;
             this.logBox.Location = new System.Drawing.Point(12, 49);
             this.logBox.Name = "logBox";
-            this.logBox.Size = new System.Drawing.Size(530, 524);
+            this.logBox.Size = new System.Drawing.Size(530, 251);
             this.logBox.TabIndex = 0;
             this.logBox.SelectedIndexChanged += new System.EventHandler(this.logBox_SelectedIndexChanged);
             // 
             // noteTextBox
             // 
-            this.noteTextBox.Location = new System.Drawing.Point(548, 430);
+            this.noteTextBox.Location = new System.Drawing.Point(549, 128);
             this.noteTextBox.Multiline = true;
             this.noteTextBox.Name = "noteTextBox";
             this.noteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -67,7 +74,7 @@
             // 
             // noteBtn
             // 
-            this.noteBtn.Location = new System.Drawing.Point(816, 579);
+            this.noteBtn.Location = new System.Drawing.Point(816, 277);
             this.noteBtn.Name = "noteBtn";
             this.noteBtn.Size = new System.Drawing.Size(75, 23);
             this.noteBtn.TabIndex = 2;
@@ -87,7 +94,7 @@
             // 
             // clrNoteBtn
             // 
-            this.clrNoteBtn.Location = new System.Drawing.Point(897, 579);
+            this.clrNoteBtn.Location = new System.Drawing.Point(897, 277);
             this.clrNoteBtn.Name = "clrNoteBtn";
             this.clrNoteBtn.Size = new System.Drawing.Size(75, 23);
             this.clrNoteBtn.TabIndex = 4;
@@ -126,7 +133,7 @@
             // 
             // fileOpenBtn
             // 
-            this.fileOpenBtn.Location = new System.Drawing.Point(727, 76);
+            this.fileOpenBtn.Location = new System.Drawing.Point(548, 12);
             this.fileOpenBtn.Name = "fileOpenBtn";
             this.fileOpenBtn.Size = new System.Drawing.Size(75, 23);
             this.fileOpenBtn.TabIndex = 8;
@@ -135,7 +142,7 @@
             // 
             // fileSaveBtn
             // 
-            this.fileSaveBtn.Location = new System.Drawing.Point(809, 75);
+            this.fileSaveBtn.Location = new System.Drawing.Point(629, 12);
             this.fileSaveBtn.Name = "fileSaveBtn";
             this.fileSaveBtn.Size = new System.Drawing.Size(75, 23);
             this.fileSaveBtn.TabIndex = 9;
@@ -187,7 +194,7 @@
             this.autoScrollCheck.AutoSize = true;
             this.autoScrollCheck.Checked = true;
             this.autoScrollCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoScrollCheck.Location = new System.Drawing.Point(455, 580);
+            this.autoScrollCheck.Location = new System.Drawing.Point(549, 281);
             this.autoScrollCheck.Name = "autoScrollCheck";
             this.autoScrollCheck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.autoScrollCheck.Size = new System.Drawing.Size(77, 17);
@@ -196,12 +203,66 @@
             this.autoScrollCheck.UseVisualStyleBackColor = true;
             this.autoScrollCheck.CheckedChanged += new System.EventHandler(this.autoScrollCheck_CheckedChanged);
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(12, 306);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(530, 267);
+            this.chart1.TabIndex = 16;
+            this.chart1.Text = "chart1";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Time",
+            "RPM",
+            "Duty",
+            "Delay",
+            "Coil Temp",
+            "Control Box Temp",
+            "Trigger RPM",
+            "Magnets"});
+            this.comboBox1.Location = new System.Drawing.Point(549, 320);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 17;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Time",
+            "RPM",
+            "Duty",
+            "Delay",
+            "Coil Temp",
+            "Control Box Temp",
+            "Trigger RPM",
+            "Magnets"});
+            this.comboBox2.Location = new System.Drawing.Point(549, 347);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 611);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.autoScrollCheck);
             this.Controls.Add(this.pulseTimeBtn);
             this.Controls.Add(this.numericUpDown1);
@@ -219,6 +280,7 @@
             this.Name = "Form1";
             this.Text = "Monitor v3.0";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,6 +302,9 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button pulseTimeBtn;
         private System.Windows.Forms.CheckBox autoScrollCheck;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 
