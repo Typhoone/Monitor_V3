@@ -56,7 +56,13 @@ namespace Monitor_V3
         public void setPulseTime(int time)
         {
             this.PULSETIME = time;
-            this.timeout = PULSETIME * 4;
+            this.timeout = PULSETIME * 4000;
+
+            if(myPort != null)
+            {
+                myPort.ReadTimeout = timeout;
+                delUpdateInfo("INFO: Pulse Time set to " + time + " seconds");
+            }
         }
 
         public void firstConnect()
@@ -82,7 +88,7 @@ namespace Monitor_V3
             myPort.BaudRate = 115200;
             
             myPort.PortName = portName;
-            myPort.ReadTimeout = timeout * 1000;
+            myPort.ReadTimeout = timeout;
 
             try {
                 myPort.Open();
@@ -123,6 +129,8 @@ namespace Monitor_V3
                 catch(Exception e)
                 {
                     Console.WriteLine(e.Message);
+                    connected = false;
+                    delUpdateInfo("ERROR: COM Disconnect");
                 }
             }
         }
