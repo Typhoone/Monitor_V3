@@ -16,6 +16,7 @@ namespace Monitor_V3
     {
         List<Log> dataList = new List<Log>();
         SerialControl serialControl;
+        FileManager fileManager;
 
         int graph1ValuesToShow = 10;
         int graph2ValuesToShow = 10;
@@ -31,6 +32,10 @@ namespace Monitor_V3
 
             this.chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
             this.chart2.ChartAreas[0].AxisY.IsStartedFromZero = false;
+
+            fileManager = new FileManager(this.dataList, this.noteTextBox);
+
+
         }
 
         /// <summary>
