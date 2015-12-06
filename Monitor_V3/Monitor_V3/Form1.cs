@@ -47,23 +47,15 @@ namespace Monitor_V3
 
         private void logBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(dataList != null && dataList.Count > 0 && logBox.SelectedIndex >= 0)
-            {
-                Log log = dataList[logBox.SelectedIndex];
-                this.noteTextBox.Text = log.getNote();
-            }
+            //if(dataList != null && dataList.Count > 0 && logBox.SelectedIndex >= 0)
+            //{
+            //    Log log = dataList[logBox.SelectedIndex];
+            //    this.noteTextBox.Text = log.getNote();
+            //}
             
         }
 
-        private void clrNoteBtn_Click(object sender, EventArgs e)
-        {
-            if (dataList != null && dataList.Count > 0 && logBox.SelectedIndex >= 0)
-            {
-                Log log = dataList[logBox.SelectedIndex];
-                this.noteTextBox.Text = log.getNote();
-            }
-               
-        }
+        
 
         private void COMconnect_Click(object sender, EventArgs e)
         {
@@ -92,16 +84,11 @@ namespace Monitor_V3
             }
         }
 
-        private void noteBtn_Click(object sender, EventArgs e)
-        {
-            Log log = dataList[this.logBox.SelectedIndex];
-            log.setNote(this.noteTextBox.Text);
-            autoScroll = true;
-        }
+        
 
         private void noteTextBox_MouseClick(object sender, MouseEventArgs e)
         {
-            autoScroll = false;
+           
         }
 
         private void autoScrollCheck_CheckedChanged(object sender, EventArgs e)

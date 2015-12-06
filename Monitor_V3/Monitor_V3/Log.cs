@@ -18,7 +18,7 @@ namespace Monitor_V3
         private int controlTemp;
         private int coilTemp;
         private double frequency;
-        private String note;
+        //private String note;
 
 
 
@@ -46,15 +46,15 @@ namespace Monitor_V3
 
         }
 
-        public void setNote(string note)
-        {
-            this.note = note;
-        }
+        //public void setNote(string note)
+        //{
+        //    this.note = note;
+        //}
 
-        public string getNote()
-        {
-            return this.note;
-        }
+        //public string getNote()
+        //{
+        //    return this.note;
+        //}
 
         public string print()
         {
