@@ -170,5 +170,10 @@ namespace Monitor_V3
         {
             updateGraphs();
         }
+
+        private void fileOpenBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

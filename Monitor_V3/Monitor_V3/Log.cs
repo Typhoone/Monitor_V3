@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Monitor_V3
@@ -141,12 +142,12 @@ namespace Monitor_V3
             else
             {
                 this.Magnets = Convert.ToInt32(dataSplit[0]);
+                this.ElectronicStartRPM = Convert.ToInt32(dataSplit[1]);
                 this.RPM1 = Convert.ToInt32(dataSplit[2]);
                 this.Duty = Convert.ToInt32(dataSplit[3]);
                 this.Delay = Convert.ToInt32(dataSplit[4]);
                 this.CoilTemp = Convert.ToInt32(dataSplit[5]);
                 this.ControlTemp = Convert.ToInt32(dataSplit[6]);
-                this.ElectronicStartRPM = Convert.ToInt32(dataSplit[1]);
                 this.Frequency = (this.RPM1 / 60.0) * 9.0;
             }
 
@@ -158,7 +159,7 @@ namespace Monitor_V3
         /// <param name="line"></param>
         public Log(string line)
         {
-            string[] vars = line.Split('\t');
+            string[] vars = clense(line).Split(',');
             if(vars.Length == 9)
             {
                 this.time = Convert.ToDateTime(vars[0]);
@@ -200,10 +201,33 @@ namespace Monitor_V3
 
             return 0;
         }
-               
+          
+        
+             
         public string print()
         {
-            return (time.ToString("HH:mm:ss") + "\t" + RPM1 + "\t" + Duty + "\t" + Delay + "\t" + CoilTemp + "\t" + ControlTemp + "\t" + ElectronicStartRPM + "\t" + String.Format("{0:0.##}", Frequency) + "\tm" + Magnets);
+            String s = string.Format(time.ToString("HH:mm:ss") + "\t{0,15}{1,12}{2,14}{3,14}{4,22}{5,24}{6,13:0.00}{7,16}", RPM1, Duty, Delay, CoilTemp, ControlTemp, ElectronicStartRPM, Frequency, Magnets);
+           Console.WriteLine(clense(s));
+
+            return s;  //(time.ToString("HH:mm:ss") + "\t" + RPM1 + "\t" + Duty + "\t" + Delay + "\t" + CoilTemp + "\t" + ControlTemp + "\t" + ElectronicStartRPM + "\t" + String.Format("{0:0.##}", Frequency) + "\t" + Magnets);
+        }
+
+
+        /// <summary>
+        /// Removes all extra formatting and returns a csv format string
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private string clense(String s)
+        {
+            String[] cleaned = s.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+            foreach(string split in cleaned)
+            {
+                Regex.Replace(split, @"\s+", "");
+            }
+            
+            //Although I could just make a seperate print, this way the file can be formatted too for readability 
+            return string.Join(",", cleaned);
         }
     }
 }
