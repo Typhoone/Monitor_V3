@@ -132,10 +132,11 @@ namespace Monitor_V3
         public Log(DateTime time, string data)
         {
             this.time = time;
-
+            Console.WriteLine(data);
             string[] dataSplit = data.Split(',');
+            Console.WriteLine(dataSplit.Count());
 
-            if (dataSplit.Length != 7)
+            if (dataSplit.Length != 8)
             {
 
             }

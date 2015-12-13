@@ -43,7 +43,17 @@ namespace Monitor_V3
             this.notesBox = notes;
 
             this.FileName = DateTime.Now.ToString("yyyy-M-d") + ".txt";
-            path = Directory.GetCurrentDirectory();
+            path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Monitor_V3\\";// Directory.GetCurrentDirectory();
+            Console.WriteLine(path);
+            try
+            {
+                DirectoryInfo di = Directory.CreateDirectory(path);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         
