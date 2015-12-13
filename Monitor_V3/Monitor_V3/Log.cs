@@ -169,7 +169,7 @@ namespace Monitor_V3
                 this.coilTemp = Int32.Parse(vars[4]);
                 this.ControlTemp = Int32.Parse(vars[5]);
                 this.electronicStartRPM = Int32.Parse(vars[6]);
-                this.frequency = Int32.Parse(vars[7]);
+                this.frequency = double.Parse(vars[7]);
                 this.magnets = Int32.Parse(vars[8]);
             }
         }
@@ -207,7 +207,7 @@ namespace Monitor_V3
         public string print()
         {
             String s = string.Format(time.ToString("HH:mm:ss") + "\t{0,15}{1,12}{2,14}{3,14}{4,22}{5,24}{6,13:0.00}{7,16}", RPM1, Duty, Delay, CoilTemp, ControlTemp, ElectronicStartRPM, Frequency, Magnets);
-           Console.WriteLine(clense(s));
+          // Console.WriteLine(clense(s));
 
             return s;  //(time.ToString("HH:mm:ss") + "\t" + RPM1 + "\t" + Duty + "\t" + Delay + "\t" + CoilTemp + "\t" + ControlTemp + "\t" + ElectronicStartRPM + "\t" + String.Format("{0:0.##}", Frequency) + "\t" + Magnets);
         }

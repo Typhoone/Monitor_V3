@@ -59,6 +59,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.chart2Size = new System.Windows.Forms.NumericUpDown();
             this.graphUpdateBtn = new System.Windows.Forms.Button();
+            this.fileNameBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pulseTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
@@ -127,7 +128,7 @@
             // 
             // fileOpenBtn
             // 
-            this.fileOpenBtn.Location = new System.Drawing.Point(926, 49);
+            this.fileOpenBtn.Location = new System.Drawing.Point(889, 47);
             this.fileOpenBtn.Name = "fileOpenBtn";
             this.fileOpenBtn.Size = new System.Drawing.Size(75, 23);
             this.fileOpenBtn.TabIndex = 8;
@@ -137,12 +138,13 @@
             // 
             // fileSaveBtn
             // 
-            this.fileSaveBtn.Location = new System.Drawing.Point(1007, 49);
+            this.fileSaveBtn.Location = new System.Drawing.Point(889, 74);
             this.fileSaveBtn.Name = "fileSaveBtn";
             this.fileSaveBtn.Size = new System.Drawing.Size(75, 23);
             this.fileSaveBtn.TabIndex = 9;
             this.fileSaveBtn.Text = "Save";
             this.fileSaveBtn.UseVisualStyleBackColor = true;
+            this.fileSaveBtn.Click += new System.EventHandler(this.fileSaveBtn_Click);
             // 
             // infoLabel
             // 
@@ -395,12 +397,20 @@
             this.graphUpdateBtn.UseVisualStyleBackColor = true;
             this.graphUpdateBtn.Click += new System.EventHandler(this.graphUpdateBtn_Click);
             // 
+            // fileNameBox
+            // 
+            this.fileNameBox.Location = new System.Drawing.Point(727, 77);
+            this.fileNameBox.Name = "fileNameBox";
+            this.fileNameBox.Size = new System.Drawing.Size(156, 20);
+            this.fileNameBox.TabIndex = 30;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 681);
+            this.Controls.Add(this.fileNameBox);
             this.Controls.Add(this.graphUpdateBtn);
             this.Controls.Add(this.chart2Size);
             this.Controls.Add(this.label5);
@@ -465,6 +475,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown chart2Size;
         private System.Windows.Forms.Button graphUpdateBtn;
+        private System.Windows.Forms.TextBox fileNameBox;
     }
 }
 

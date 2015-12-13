@@ -50,14 +50,22 @@ namespace Monitor_V3
         public void addLog(string data_rx)
         {
             dataList.Add(new Log(DateTime.Now, data_rx));
-            this.logBox.Items.Add(dataList[dataList.Count - 1].print());
+            updateLogBox(dataList.Count - 1);
+            
+            
+        }
+
+        public void updateLogBox(int pos)
+        {
+            this.logBox.Items.Add(dataList[pos].print());
             if (autoScroll)
             {
                 this.logBox.SelectedIndex = this.logBox.Items.Count - 1;
             }
             updateGraphs();
-            
         }
+
+
 
         private void logBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -173,6 +181,40 @@ namespace Monitor_V3
 
         private void fileOpenBtn_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            DialogResult result = openFileDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                string fileName = openFileDialog.FileName;
+                updateInfo("File Loaded: " + fileName);
+
+                this.noteTextBox.Text = fileManager.loadFile(fileName);
+                logBox.Items.Clear();
+
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    updateLogBox(i);
+                }
+
+            }
+        }
+
+        private void fileSaveBtn_Click(object sender, EventArgs e)
+        {
+            if(fileNameBox.Text.Count() > 0)
+            {
+                if (fileNameBox.Text.EndsWith(".txt"))
+                {
+                    fileManager.FileName = fileNameBox.Text;
+                }
+                else
+                {
+                    fileManager.FileName = fileNameBox.Text + ".txt";
+                }
+            }
+            fileManager.saveAll(this.noteTextBox.Text);
+            updateInfo("FILE saved: " + fileManager.FileName);
 
         }
     }
